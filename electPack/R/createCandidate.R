@@ -40,7 +40,7 @@ setMethod(f="createCandidate",
             if(party=="Republican") {
               delegatesNeeded <- 1237 - delegatesWon
             }
-            return(new("Candidate", name, delegatesWon, party, delegatesNeeded,
+            return(new("Candidate",
                        name = name, delegatesWon = delegatesWon, party = party))
           }
 )

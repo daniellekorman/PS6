@@ -31,10 +31,16 @@ setClass(Class="Candidate",
 
 #' @export
 setMethod("initialize", "Candidate",
-          function(.Object, name, delegatesWon, party){
+          function(.Object, name, delegatesWon, party) {
             .Object@name <- name
             .Object@party <- party
             .Object@delegatesWon <- delegatesWon
+            if(party=="Democrat") {
+              .Object@delegatesNeeded <- 2383 - delegatesWon
+            }
+            if(party=="Republican") {
+              .Object@delegatesNeeded <- 1237 - delegatesWon
+            }
             value=callNextMethod()
             return(value)
           }
@@ -42,8 +48,9 @@ setMethod("initialize", "Candidate",
 #' @export
 setMethod(f = "show", signature = "Candidate",
           definition = function(object) {
-            paste(object@name, object@party,
-                 object@delegatesWon, object@delegatesNeeded)
+            paste("Name=", object@name, "Party=", object@party,
+                 "Delegates Won =", object@delegatesWon,
+                 "Delegates Needed =", object@delegatesNeeded)
           }
 )
 #' @export
