@@ -1,8 +1,8 @@
 Package: electPack
-Title: What the Package Does (one line, title case)
+Title: 2016 Presidential Primaries Candidate Package
 Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph)
+Authors@R: person("Danielle", "Korman", email = "d.korman@wustl.edu", role = c("aut", "cre"))
+Description: This package creates objects of class Candidate, and has the ability to calculate how many delegates each presidential candidate needs to win the nomination as well as what proportion of the remaining delegates are needed to win
 Depends: R (>= 3.1.2)
 License: What license is it under?
 LazyData: true
