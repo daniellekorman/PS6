@@ -2,30 +2,15 @@
 # Danielle Korman
 # March 21 2016
 rm(list=ls())
-## 
+##
+# Use devtools and roxygen packages
 library(devtools)
 library(roxygen2)
+# Set working directory
 setwd("/Users/drk/Desktop/R/PS6")
+# Create Package called "electPack"
 create("electPack")
-# Create Candidate class with slots name, delegatesWon, party, and delegatesNeeded
-setClass("Candidate", 
-         slots= c(name = "character", 
-                  delegatesWon = "numeric", 
-                  party = "character", 
-                  delegatesNeeded = "numeric" ))
-
-  setGeneric(name="createCandidate",
-             def=function(name, delegatesWon, party)
-             {standardGeneric("createCandidate")}
-  )
-
-?setGeneric
-setMethod(f="CreateCandidate",
-          definition=function(x, y, ...){
-            .add <- getSquares(addSquares(x, y))
-            .subtract <- getSquares(subtractSquares(x, y))
-            .multiply <- getSquares(multSquares(x, y))
-            return(new("TotalSquares", addSquare=.add, subtractSquare=.subtract,
-                       multSquare = .multiply, x = x, y = y))
-          }
-?setClass
+# Update documentation
+current.code <- as.package("electPack")
+load_all(current.code)
+document(current.code)
