@@ -1,8 +1,9 @@
 #' A presidential candidate object
-#' 
-#' Object of class \code{Candidate} as created by the \code{createCandidate} functions
 #'
-#' 
+#' Object of class \code{Candidate} as created by the \code{createCandidate} function. Objects
+#' of this class include \code{show} and \code{print} methods.
+#'
+#'
 #' An object of the class `Candidate' has the following slots:
 #' \itemize{
 #' \item \code{name} A character string that is the name of the candidate
@@ -11,47 +12,42 @@
 #' \item \code{delegatesNeeded} The number of delegates a candidate needs to win
 #' }
 #'
-#' @author Danielle Korman: \email{d.korman@wustl.edu}
+#' @author Danielle Korman
 #' @aliases Candidate-class initialize,createCandidate-method
 #' @rdname Candidate
 #' @export
 setClass(Class="Candidate",
-         representation = representation(name = "character", 
-                    delegatesWon = "numeric", 
-                    party = "character", 
+         representation = representation(name = "character",
+                    delegatesWon = "numeric",
+                    party = "character",
                     delegatesNeeded = "numeric"),
          prototype = prototype(
-           name = character(),
+           name = NULL,
            delegatesWon = numeric(),
-           party = character(),
+           party = NULL,
            delegatesNeeded = numeric()
          )
 )
 
 #' @export
-setMethod("initialize", "Candidate", 
-          function(.Object, ...){
+setMethod("initialize", "Candidate",
+          function(.Object, name, delegatesWon, party){
+            .Object@name <- name
+            .Object@party <- party
+            .Object@delegatesWon <- delegatesWon
             value=callNextMethod()
             return(value)
           }
-) 
-
-#' @rdname Candidate
-#' @export 
-setGeneric(name="createCandidate",
-           def=function(name, delegatesWon, party)
-           {standardGeneric("createCandidate")}
 )
 #' @export
-setMethod(f="createCandidate",
-          definition=function(name, delegatesWon, party) {
-            if(party=="Democrat") {
-              delegatesNeeded <- 2383 - delegatesWon
-            }
-            if(party=="Republican") {
-              delegatesNeeded <- 1237 - delegatesWon
-            }
-            return(new("Candidate", name, delegatesWon, party, delegatesNeeded, 
-                       name = name, delegatesWon = delegatesWon, party = party))
+setMethod(f = "show", signature = "Candidate",
+          definition = function(object) {
+            paste(object@name, object@party,
+                 object@delegatesWon, object@delegatesNeeded)
           }
 )
+#' @export
+print.Candidate <- function(Candidate) {
+            paste(Candidate@name, Candidate@party,
+                  Candidate@delegatesWon, Candidate@delegatesNeeded)
+          }
